@@ -8,7 +8,6 @@ import com.backend.pc1.dto.PageResponseDTO;
 import com.backend.pc1.dto.event.EventRequestDTO;
 import com.backend.pc1.dto.event.EventResponseDTO;
 import com.backend.pc1.dto.event.EventResponseDTO2;
-import com.backend.pc1.dto.event.GetEventResponseDTO;
 import com.backend.pc1.dto.event.PatchEventResponseDTO;
 import com.backend.pc1.exception.EventNotFoundException;
 import com.backend.pc1.model.CampusEvent;
