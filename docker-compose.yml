@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:18-alpine
+    container_name: pc1-1
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: pc1
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: pc1-backend
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: pc1
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      JWT_SECRET: 3cfa498a91f8427f98d407639e26210f1c3f2d90a782b1897cdae3d0859c03b1
+      JWT_EXPIRATION_ACCESS: 86400000
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
