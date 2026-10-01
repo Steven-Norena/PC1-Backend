@@ -3,6 +3,7 @@ package com.backend.pc1.service;
 import com.backend.pc1.dto.user.LoginRequestDTO;
 import com.backend.pc1.dto.user.LoginResponseDTO;
 import com.backend.pc1.dto.user.RegisterRequestDTO;
+import com.backend.pc1.exception.UserAlreadyExistsException;
 import com.backend.pc1.model.User;
 import com.backend.pc1.repository.UserRepository;
 import com.backend.pc1.security.JwtUtils;
@@ -46,10 +47,10 @@ public class UserService implements UserDetailsService {
 
     public String register(RegisterRequestDTO request) {
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("El email ya está registrado.");
+            throw new UserAlreadyExistsException("El email ya está registrado.");
         }
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new RuntimeException("El nombre de usuario ya está registrado.");
+            throw new UserAlreadyExistsException("El nombre de usuario ya está registrado.");
         }
 
         User user = User.builder()
